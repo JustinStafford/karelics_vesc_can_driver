@@ -19,6 +19,7 @@ find_package(rclpy REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(can_msgs REQUIRED)
 
 install(DIRECTORY
   launch
@@ -26,7 +27,7 @@ install(DIRECTORY
 )
 
 # Install Python modules
-ament_python_install_package(${PROJECT_NAME})
+# Note: ament_python_install_package is handled by rosidl_generate_interfaces
 
 # Install Python executables
 install(PROGRAMS
