@@ -1,2 +1,23 @@
 *.pyc
 *.idea/
+
+# Build directories
+build/
+dist/
+*.egg-info/
+__pycache__/
+
+# Install directories
+install/
+installed/
+deploy/
+
+# Log directories
+logs/
+log/
+*.log
+
+# Temporary and cache files
+tmp/
+temp/
+.cache/

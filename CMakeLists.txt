@@ -27,7 +27,7 @@ install(DIRECTORY
 )
 
 # Install Python modules
-# Note: ament_python_install_package is handled by rosidl_generate_interfaces
+ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
@@ -57,10 +57,11 @@ ament_export_dependencies(${PROJECT_NAME}
   rclcpp, rclpy, can_msgs, sensor_msgs, std_msgs, std_srvs
 )
 
-rosidl_generate_interfaces(${PROJECT_NAME}
-  ${msg_files}
-  DEPENDENCIES ${dependencies}
-)
+# Note: Message generation is now handled by the Python package setup
+# rosidl_generate_interfaces(${PROJECT_NAME}
+#   ${msg_files}
+#   DEPENDENCIES ${dependencies}
+# )
 
 if(BUILD_TESTING)
     add_subdirectory(test)

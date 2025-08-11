@@ -25,7 +25,15 @@ from rclpy.node import Node
 
 from can_msgs.msg import Frame
 
-from karelics_health_monitor.topic_monitor.topic_monitor import TopicMonitor
+# from karelics_health_monitor.topic_monitor.topic_monitor import TopicMonitor
+import sys
+import os
+
+# Add the Python package path to sys.path so we can import from the same package
+package_path = os.path.join(os.path.dirname(__file__), '..', 'python3.12', 'site-packages')
+if os.path.exists(package_path):
+    sys.path.insert(0, package_path)
+
 from karelics_vesc_can_driver.vesc_messages import *
 from karelics_vesc_can_driver.vesc import *
 
@@ -216,8 +224,8 @@ class VescCanDriver(Node):
         current_vesc.handle_imu_data()
 
 
-if __name__ == "__main__":
-    rclpy.init(args=sys.argv)
+def main(args=None):
+    rclpy.init(args=args)
 
     karelics_vesc_can_driver_node = VescCanDriver()
 
@@ -226,3 +234,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         karelics_vesc_can_driver_node.destroy_node()
         rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()
