@@ -36,8 +36,8 @@ def launch_setup(context, *args, **kwargs):
 
     emulate_tty = LaunchConfiguration("emulate_tty")
 
-    motor_poles = LaunchConfiguration("motor_poles").perform(context)
-    gear_ratio = LaunchConfiguration("gear_ratio").perform(context)
+    motor_poles = int(LaunchConfiguration("motor_poles").perform(context))
+    gear_ratio = float(LaunchConfiguration("gear_ratio").perform(context))
 
     emulate_tty_declare = DeclareLaunchArgument("emulate_tty", default_value="True")
 
@@ -63,7 +63,7 @@ def launch_setup(context, *args, **kwargs):
     
     vesc_can_driver = Node(
         package="karelics_vesc_can_driver",
-        executable="karelics_vesc_can_driver/vesc_can_driver.py",
+        executable="vesc_can_driver.py",
         name="karelics_vesc_can_driver",
         output="screen",
         emulate_tty=emulate_tty,
@@ -72,7 +72,7 @@ def launch_setup(context, *args, **kwargs):
 
     battery_status = Node(
         package="karelics_vesc_can_driver",
-        executable="karelics_vesc_can_driver/battery_status.py",
+        executable="battery_status.py",
         name="battery_status_node",
         output="screen",
         emulate_tty=emulate_tty,

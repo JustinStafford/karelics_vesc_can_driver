@@ -22,14 +22,6 @@ from std_srvs.srv import SetBool
 
 from rclpy.node import Node
 
-import sys
-import os
-
-# Add the Python package path to sys.path so we can import from the same package
-package_path = os.path.join(os.path.dirname(__file__), '..', 'python3.12', 'site-packages')
-if os.path.exists(package_path):
-    sys.path.insert(0, package_path)
-
 from karelics_vesc_can_driver.msg import VescStatus, VescStatus2, VescStatus3, VescStatus4, VescStatus5
 from vesc_messages import *
 
