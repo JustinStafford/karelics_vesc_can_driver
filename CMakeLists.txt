@@ -60,11 +60,11 @@ ament_export_dependencies(${PROJECT_NAME}
   rclcpp, rclpy, can_msgs, sensor_msgs, std_msgs, std_srvs
 )
 
-# Note: Message generation is now handled by the Python package setup
-# rosidl_generate_interfaces(${PROJECT_NAME}
-#   ${msg_files}
-#   DEPENDENCIES ${dependencies}
-# )
+# Generate custom message interfaces
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+  DEPENDENCIES ${dependencies}
+)
 
 # Testing disabled for ROS2 Jazzy compatibility
 # if(BUILD_TESTING)
