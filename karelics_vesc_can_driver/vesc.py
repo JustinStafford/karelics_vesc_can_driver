@@ -25,7 +25,6 @@ from rclpy.node import Node
 from karelics_vesc_can_driver.msg import VescStatus, VescStatus2, VescStatus3, VescStatus4, VescStatus5
 from vesc_messages import *
 
-
 class Vesc:
     def __init__(self, node: Node, vesc_id, send_function, lock_function, release_function, motor_poles, gear_ratio):
 
