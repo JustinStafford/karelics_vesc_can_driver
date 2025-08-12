@@ -25,17 +25,8 @@ from rclpy.node import Node
 
 from can_msgs.msg import Frame
 
-# from karelics_health_monitor.topic_monitor.topic_monitor import TopicMonitor
-import sys
-import os
-
-# Add the Python package path to sys.path so we can import from the same package
-package_path = os.path.join(os.path.dirname(__file__), '..', 'python3.12', 'site-packages')
-if os.path.exists(package_path):
-    sys.path.insert(0, package_path)
-
-from karelics_vesc_can_driver.vesc_messages import *
-from karelics_vesc_can_driver.vesc import *
+from vesc_messages import *
+from vesc import *
 
 
 class CanMessageHandler:
@@ -76,6 +67,10 @@ class CanMessageHandler:
         # TODO: add check to match length and crc
         # https://karelics.myjetbrains.com/youtrack/issue/ROS-1499
         if msg_id == self._process_buffer_msg_id:
+            # Check if buffer has data before processing
+            if len(self._input_buffer) == 0:
+                return None
+                
             # this block is taken from the vesc tool GitHub repo, seems like here they do the crc check, we could do
             # something similar
             # payload[0] = char(254); // vesc tool node ID
@@ -105,10 +100,10 @@ class VescCanDriver(Node):
     def __init__(self):
         super().__init__("vesc_can_driver")
 
-        self.declare_parameter("motor_poles")
+        self.declare_parameter("motor_poles", value=8)
         self.motor_poles = int(self.get_parameter("motor_poles").value)
 
-        self.declare_parameter("gear_ratio")
+        self.declare_parameter("gear_ratio", value=1.0)
         self.gear_ratio = float(self.get_parameter("gear_ratio").value)
 
         self.get_logger().info("Starting vesc can driver")

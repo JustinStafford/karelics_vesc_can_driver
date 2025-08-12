@@ -60,10 +60,10 @@ def launch_setup(context, *args, **kwargs):
             timeout_sec=sender_timeout_sec,
         ).items(),
     )
-
+    
     vesc_can_driver = Node(
         package="karelics_vesc_can_driver",
-        executable="vesc_can_driver.py",
+        executable="karelics_vesc_can_driver/vesc_can_driver.py",
         name="karelics_vesc_can_driver",
         output="screen",
         emulate_tty=emulate_tty,
@@ -72,7 +72,7 @@ def launch_setup(context, *args, **kwargs):
 
     battery_status = Node(
         package="karelics_vesc_can_driver",
-        executable="battery_status.py",
+        executable="karelics_vesc_can_driver/battery_status.py",
         name="battery_status_node",
         output="screen",
         emulate_tty=emulate_tty,

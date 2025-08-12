@@ -31,7 +31,7 @@ if os.path.exists(package_path):
     sys.path.insert(0, package_path)
 
 from karelics_vesc_can_driver.msg import VescStatus, VescStatus2, VescStatus3, VescStatus4, VescStatus5
-from karelics_vesc_can_driver.vesc_messages import *
+from vesc_messages import *
 
 
 class Vesc:

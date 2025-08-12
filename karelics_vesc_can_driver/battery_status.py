@@ -28,15 +28,7 @@ from typing import List
 import rclpy
 from rclpy.node import Node, NodeNameNonExistentError
 from sensor_msgs.msg import BatteryState
-import sys
-import os
-
-# Add the Python package path to sys.path so we can import from the same package
-package_path = os.path.join(os.path.dirname(__file__), '..', 'python3.12', 'site-packages')
-if os.path.exists(package_path):
-    sys.path.insert(0, package_path)
-
-from karelics_vesc_can_driver.battery_status_base import BatteryStatusBase
+from battery_status_base import BatteryStatusBase
 
 from karelics_vesc_can_driver.msg import VescStatus5
 
@@ -193,8 +185,8 @@ class BatteryStatus(Node, BatteryStatusBase):
             self.battery_pub.publish(battery_state)
 
 
-def main(args=None):
-    rclpy.init(args=args)
+if __name__ == "__main__":
+    rclpy.init(args=sys.argv)
 
     battery_status_node = BatteryStatus()
 
@@ -202,7 +194,3 @@ def main(args=None):
 
     battery_status_node.destroy_node()
     rclpy.shutdown()
-
-
-if __name__ == "__main__":
-    main()

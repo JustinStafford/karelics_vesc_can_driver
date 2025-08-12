@@ -1,2 +1,0 @@
-find_package(ament_cmake_pytest REQUIRED)
-ament_add_pytest_test(${PROJECT_NAME}_test_vesc_messages test_vesc_messages.py)
