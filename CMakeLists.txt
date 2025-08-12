@@ -26,13 +26,13 @@ install(DIRECTORY
   DESTINATION share/${PROJECT_NAME}/
 )
 
-# Install Python modules and executables in flat structure for proper imports
+# Install Python modules
 install(DIRECTORY
   karelics_vesc_can_driver
   DESTINATION lib/
 )
 
-# Install Python executables so ros2 run can find them
+# Install Python executables
 install(PROGRAMS
   karelics_vesc_can_driver/vesc_can_driver.py
   karelics_vesc_can_driver/battery_status.py
@@ -60,7 +60,6 @@ ament_export_dependencies(${PROJECT_NAME}
   rclcpp, rclpy, can_msgs, sensor_msgs, std_msgs, std_srvs
 )
 
-# Generate custom message interfaces
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${msg_files}
   DEPENDENCIES ${dependencies}

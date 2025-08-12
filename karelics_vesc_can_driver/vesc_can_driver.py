@@ -100,10 +100,10 @@ class VescCanDriver(Node):
     def __init__(self):
         super().__init__("vesc_can_driver")
 
-        self.declare_parameter("motor_poles", value=8)
+        self.declare_parameter("motor_poles")
         self.motor_poles = int(self.get_parameter("motor_poles").value)
 
-        self.declare_parameter("gear_ratio", value=1.0)
+        self.declare_parameter("gear_ratio")
         self.gear_ratio = float(self.get_parameter("gear_ratio").value)
 
         self.get_logger().info("Starting vesc can driver")
